@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imgs/discussion_1.png</file>
+        <file>imgs/find_1.png</file>
+        <file>imgs/profile.png</file>
+        <file>imgs/logo.png</file>
+        <file>imgs/user.png</file>
+        <file>imgs/Profile (2).png</file>
+        <file>imgs/user (1).png</file>
+        <file>imgs/Simple Shiny.svg</file>
+        <file>imgs/Sprinkle.svg</file>
+        <file>imgs/World Map.svg</file>
+        <file>imgs/profileBg.png</file>
+        <file>imgs/undraw_Opened_re_i38e (1).png</file>
+        <file>imgs/loginPic.svg</file>
+        <file>imgs/RegisterPic.svg</file>
+        <file>imgs/5875354.png</file>
+        <file>imgs/Contour Line.svg</file>
+        <file>imgs/welcomePic.png</file>
+        <file>imgs/addIcon.png</file>
+        <file>imgs/send-message.png</file>
+        <file>imgs/left-arrow.png</file>
+        <file>imgs/status.png</file>
+        <file>imgs/story1.png</file>
+        <file>imgs/story2.jpg</file>
+        <file>imgs/story3.jpg</file>
+        <file>imgs/fav.png</file>
+        <file>imgs/arrow-right.png</file>
+        <file>imgs/left-arrow-slider.png</file>
+        <file>imgs/home.png</file>
+        <file>imgs/delete.png</file>
+        <file>imgs/star.png</file>
+        <file>imgs/RozanovaGEO-Demo-SemiBold.otf</file>
+    </qresource>
+</RCC>
