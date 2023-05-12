@@ -9,6 +9,7 @@
 #include "application/application.h"
 #include <string>
 #include <QKeyEvent>
+#include "lib/utils.h"
 
 Registerfrom::Registerfrom(QWidget *parent) :
     QDialog(parent),
@@ -37,7 +38,8 @@ void Registerfrom::on_pushButton_3_clicked()
     std::string userName = ui->userNameLE->text().trimmed().toStdString();
     std::string password = ui->passwordLE->text().trimmed().toStdString();
 
-    User *regUser = new User(userName,userName, firstName, lastName, password);
+    User *regUser = new User("",userName, firstName, lastName, password);
+    regUser->setUserID(utils::convertAddressToString(regUser).toStdString());
 
     if(Application::registerUser(regUser))
     {

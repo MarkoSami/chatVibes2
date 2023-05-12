@@ -41,16 +41,16 @@ public:
         }
 
 
-        if (Application::stories[Application::loggedUser->getUserName()].size() > 0) {
-            QClickableGroupBox* storyBoxLoggedUser = renderStory(Application::stories[Application::loggedUser->getUserName()].front() , Application::loggedUser->getUserName());
+        if (Application::stories[Application::loggedUser->getUserID()].size() > 0) {
+            QClickableGroupBox* storyBoxLoggedUser = renderStory(Application::stories[Application::loggedUser->getUserID()].front() , Application::loggedUser->getUserName());
             MainWindow::connect(storyBoxLoggedUser, &QClickableGroupBox::clicked, [=]() {
-                MainWindow::handleStoryClicked(storyBoxLoggedUser , Application::stories[Application::loggedUser->getUserName()] , mainWindow);
+                MainWindow::handleStoryClicked(storyBoxLoggedUser , Application::stories[Application::loggedUser->getUserID()] , mainWindow);
             });
             mainWindow->getUI()->horizontalGroupBox_3->layout()->addWidget(storyBoxLoggedUser) ;
         }
 
         for(auto& contact : Application::loggedUser->getUserContacts()){
-            std::list<Story*> storiesList = Application::stories[contact->getName()];
+            std::list<Story*> storiesList = Application::stories[contact->getID()];
             if (storiesList.empty()) continue ;
 
             QClickableGroupBox* storyBox = renderStory(storiesList.front() , contact->getName());
@@ -58,7 +58,6 @@ public:
                     MainWindow::handleStoryClicked(storyBox , storiesList , mainWindow);
                 });
                 mainWindow->getUI()->StoriesContainer->layout()->addWidget(storyBox);
-
         }
 
     }

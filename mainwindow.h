@@ -80,6 +80,7 @@ private:
 
 public slots:
     void handleClickedConversation(QGroupBox*);
+    void dissappearIcon();
 
     static void handleStoryClicked(QGroupBox* , std::list<Story*> storiesList , MainWindow* mainWindow){
 

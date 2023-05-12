@@ -21,6 +21,15 @@ std::string Contact::getID(){
     return this->ID;
 }
 
+void Contact::setIsAdded(bool _isAdded) {
+    this->isAdded = _isAdded;
+}
+
+bool Contact::getIsAdded() {
+    return this->isAdded;
+}
+
+
 void Contact::setID(std::string ID){
     this->ID = ID;
 }

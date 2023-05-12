@@ -42,13 +42,13 @@ void AddStory::on_pushButton_2_clicked()
         ui->label->setStyleSheet("color:red") ;
         return ;
     }
-    if (Application::stories.find(Application::loggedUser->getUserName()) == Application::stories.end()) {
+    if (Application::stories.find(Application::loggedUser->getUserID()) == Application::stories.end()) {
         std::list<Story*>newStoriesList ;
         newStoriesList.push_back(newStory);
-        Application::stories[Application::loggedUser->getUserName()] = newStoriesList ;
+        Application::stories[Application::loggedUser->getUserID()] = newStoriesList ;
     }
     else {
-        Application::stories[Application::loggedUser->getUserName()].push_back(newStory) ;
+        Application::stories[Application::loggedUser->getUserID()].push_back(newStory) ;
     }
     img_path = "" ;
     ui->lineEdit->setText("");

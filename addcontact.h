@@ -14,6 +14,7 @@ class AddContact : public QDialog
 public:
     explicit AddContact(QWidget *parent = nullptr);
     ~AddContact();
+    void setIDAuto(QString id);
 
 
 signals: void renderConversation();

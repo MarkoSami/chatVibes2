@@ -28,7 +28,6 @@ private:
     bool deleted;
 
 
-
 public:
 
     enum messageSide  {

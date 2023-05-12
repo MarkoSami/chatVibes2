@@ -129,7 +129,7 @@ public:
         if (myConv == nullptr) {
             for (auto &user : Application::users) {
                     if (user->getUserName() == receiverName) {
-                        Contact *newContact = new Contact(loggedUser->getUserName());
+                        Contact *newContact = new Contact(loggedUser->getUserID());
                         newContact->setName(loggedUser->getUserName());
                         Conversation *newConv = new Conversation(newContact , false , loggedUser->getUserID()) ;
                         myConv = newConv ;
@@ -140,6 +140,15 @@ public:
         }
 
         return myConv;
+    }
+
+    static std::string findContactID(std::string name ) {
+        for (auto &user : users) {
+            if (user->getUserName() == name) {
+                return user->getUserID() ;
+            }
+        }
+        return "note:user doesn't exist in the Application!";
     }
 
     static Conversation* updatePhoto(std::string receiverName , std::string newImg) {

@@ -26,8 +26,9 @@ void StartNewChat::on_pushButton_clicked()
         if (id != "" && messageName != "") {
             Contact *newContact = new Contact(id); // mark // username
             newContact->setName(newContact->getID());
-            Conversation* newConversation = new Conversation(newContact , false , newContact->getID());
-
+            newContact->setID(Application::findContactID(newContact->getName()));
+            Conversation* newConversation = new Conversation(newContact , false , newContact->getName());
+            newConversation->getReceiver()->setIsAdded(true);
             Application::loggedUser->addNewConversation(newConversation);
 
             Message *messageText = new Message(Application::loggedUser->getUserName(), messageName, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);
@@ -45,7 +46,7 @@ void StartNewChat::on_pushButton_clicked()
 
 //            QClickableGroupBox* ConversationgroubBoxAddress  = Application::currentConversation->getConversationGroupBoxAddress();
 
-            Conversation *receiverConv = Application::getReceiverConversation(newConversation->getReceiver()->getID());
+            Conversation *receiverConv = Application::getReceiverConversation(newConversation->getReceiver()->getName());
             if(receiverConv != nullptr)
             receiverConv->addNewMessage(messageText);
 

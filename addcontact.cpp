@@ -29,7 +29,9 @@ void AddContact::on_pushButton_10_clicked()
      this->close();
 }
 
-
+void AddContact::setIDAuto(QString id) {
+     ui->lineEdit_4->setText(id);
+}
 
 
 void AddContact::on_pushButton_2_clicked()
@@ -39,17 +41,18 @@ void AddContact::on_pushButton_2_clicked()
      std::string name = ui->lineEdit_5->text().toStdString();
      QString imgPath = img_path;
      if ((Application::loggedUser) != nullptr) {
-         if (id != "" && name != "") {
+         if (id != "" && name != "" ) {
              Contact *newContact = new Contact(id, imgPath.toStdString(), name);
              Application::loggedUser->addContact(newContact);
-
              if (Application::currentConversation!=nullptr){
+                 Application::currentConversation->getReceiver()->setIsAdded(true);
                  Conversation* crnt = Application::currentConversation;
                  QClickableGroupBox* gb = crnt->getConversationGroupBoxAddress();
                  QString addrs = gb->property("ContactNameAddress").toString();
                  QLabel* senderLabelAddress = (QLabel*)utils::convertStringToaddress(addrs);
                  senderLabelAddress->setText(QString::fromStdString(name));
                  Application::currentConversation->setName(senderLabelAddress->text().toStdString());
+                 emit renderConversation();
             }
         }
     }

@@ -93,18 +93,19 @@ void MainWindow::renderLoggedUserStory(Story *newStory) {
     }
 
     QClickableGroupBox* storyBox = GUI_render::renderStory(newStory,Application::loggedUser->getUserName());
-    if (Application::stories[Application::loggedUser->getUserName()].size() > 1) {
-         MainWindow::handleStoryClicked(storyBox , Application::stories[Application::loggedUser->getUserName()] , this);
+    if (Application::stories[Application::loggedUser->getUserID()].size() > 1) {
+         MainWindow::handleStoryClicked(storyBox , Application::stories[Application::loggedUser->getUserID()] , this);
     }
 
     MainWindow::connect(storyBox, &QClickableGroupBox::clicked, [=]() {
-        MainWindow::handleStoryClicked(storyBox , Application::stories[Application::loggedUser->getUserName()] , this);
+        MainWindow::handleStoryClicked(storyBox , Application::stories[Application::loggedUser->getUserID()] , this);
     });
     ui->horizontalGroupBox_3->layout()->addWidget(storyBox) ;
 }
 
 
 void MainWindow::handleClickedConversation(QGroupBox *renderConversation) {
+
 
     // Set the current index to 1 to show a loading screen
     ui->stackedWidget->setCurrentIndex(1);
@@ -129,6 +130,16 @@ void MainWindow::handleClickedConversation(QGroupBox *renderConversation) {
         qDebug()<< (Application::currentConversation );
         Application::currentConversation =  conversation;
         qDebug()<< (Application::currentConversation );
+
+        if (!Application::currentConversation->getReceiver()->getIsAdded()) {
+            ui->pushButton_5->setStyleSheet("image: url(:/imgs/addIcon.png)");
+            ui->pushButton_5->setCursor(Qt::PointingHandCursor);
+        }
+
+        else {
+            ui->pushButton_5->setStyleSheet("");
+            ui->pushButton_5->setCursor(Qt::ArrowCursor);
+        }
 
 
         QLayoutItem *item;
@@ -221,11 +232,20 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_5_clicked()
 {
+    if (!Application::currentConversation->getReceiver()->getIsAdded()) {
     addContactWin = new AddContact() ;
+        addContactWin->setIDAuto(QString::fromStdString(Application::currentConversation->getReceiver()->getID()));
     addContactWin->show();
-    connect(addContactWin, SIGNAL(renderConversation()), this, SLOT(renderContactMain()));
+    connect(addContactWin, SIGNAL(renderConversation()), this, SLOT(dissappearIcon()));
+    }
+
 }
 
+void MainWindow::dissappearIcon() {
+    ui->pushButton_5->setStyleSheet("");
+    ui->ContactName->setText(QString::fromStdString(Application::currentConversation->getReceiver()->getName()));
+
+}
 
 void MainWindow::on_pushButton_6_clicked()
 {
