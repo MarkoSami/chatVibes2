@@ -41,7 +41,7 @@ public:
 
         for(auto *user : Application::users)
         {
-            if( user != nullptr && userId == user->getUserID()) {
+            if( user != nullptr && userId == user->getUserName()) {
                 return user;
             }
         }
@@ -62,11 +62,11 @@ public:
 
     static bool isAlreadyRegistered(User* user)
     {
-        std::string userID = user->getUserID();
+        std::string userID = user->getUserName();
 
         for(auto regUser : Application::users)
         {
-            if(userID == regUser->getUserID())
+            if(userID == regUser->getUserName())
                 return true;
         }
         return false;
@@ -117,7 +117,7 @@ public:
 
                 while(!tempConversations.empty()){
                     if (user->getUserName() != loggedUser->getUserName() && user->getUserName() == receiverName ) {
-                        if (tempConversations.top()->getName() == loggedUser->getUserName()) {
+                        if (tempConversations.top()->getReceiver()->getName() == loggedUser->getUserName()) {
                             myConv = tempConversations.top();
                         }
                     }
@@ -129,10 +129,10 @@ public:
         if (myConv == nullptr) {
             for (auto &user : Application::users) {
                     if (user->getUserName() == receiverName) {
-                        Contact *newContact = new Contact("fsfsa" , loggedUser->getIMGpath() , loggedUser->getUserName());
-                        Conversation *newConv = new Conversation(newContact , false , loggedUser->getUserName()) ;
+                        Contact *newContact = new Contact(loggedUser->getUserName());
+                        newContact->setName(loggedUser->getUserName());
+                        Conversation *newConv = new Conversation(newContact , false , loggedUser->getUserID()) ;
                         myConv = newConv ;
-                        user->addContact(newContact);
                         user->addNewConversation(newConv);
                         break ;
                 }
@@ -367,6 +367,7 @@ public:
             hGroupBox->setProperty("type","conversation");
             hGroupBox->setProperty("msgText","conversation");
             hGroupBox->setProperty("labelAddress",utils::convertAddressToString(textmsg));
+            hGroupBox->setProperty("ContactNameAddress",utils::convertAddressToString(senderName));
 
             hGroupBox->setLayout(hLayout);
             QSpacerItem* hSpacer = new QSpacerItem(10, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);

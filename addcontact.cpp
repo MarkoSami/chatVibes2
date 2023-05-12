@@ -38,20 +38,24 @@ void AddContact::on_pushButton_2_clicked()
      std::string id = ui->lineEdit_4->text().toStdString(); // assign unique id to each contact
      std::string name = ui->lineEdit_5->text().toStdString();
      QString imgPath = img_path;
-
-
      if ((Application::loggedUser) != nullptr) {
          if (id != "" && name != "") {
-        Contact *newContact = new Contact(id, imgPath.toStdString(), name);
-        Conversation* newConversation = new Conversation(newContact , false , newContact->getName());
-        Application::loggedUser->addContact(newContact);
-        newConversation->getReceiver()->setImgPath(Application::renderWithPhoto(newContact->getName()));
-        Application::loggedUser->addNewConversation(newConversation);
-        emit renderConversation() ;
-     }
-     }
+             Contact *newContact = new Contact(id, imgPath.toStdString(), name);
+             Application::loggedUser->addContact(newContact);
 
+             if (Application::currentConversation!=nullptr){
+                 Conversation* crnt = Application::currentConversation;
+                 QClickableGroupBox* gb = crnt->getConversationGroupBoxAddress();
+                 QString addrs = gb->property("ContactNameAddress").toString();
+                 QLabel* senderLabelAddress = (QLabel*)utils::convertStringToaddress(addrs);
+                 senderLabelAddress->setText(QString::fromStdString(name));
+                 Application::currentConversation->setName(senderLabelAddress->text().toStdString());
+            }
+        }
+    }
 }
+
+
 
 
 

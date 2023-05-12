@@ -385,8 +385,8 @@ QScrollBar::sub-page:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>618</width>
-                  <height>439</height>
+                  <width>624</width>
+                  <height>457</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -436,6 +436,31 @@ QScrollBar::sub-page:vertical {
 font-size: 18px;
 color: white;
 </string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item alignment="Qt::AlignRight">
+                    <widget class="QPushButton" name="pushButton_5">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>37</width>
+                       <height>34</height>
+                      </size>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">image: url(:/imgs/addIcon.png);</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -608,7 +633,7 @@ padding : 14px 12px; </string>
        <string notr="true">border:none</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_6">
        <property name="sizePolicy">
@@ -830,7 +855,7 @@ QScrollBar::sub-page:vertical {
                 <x>0</x>
                 <y>0</y>
                 <width>382</width>
-                <height>403</height>
+                <height>398</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -1077,8 +1102,8 @@ QScrollBar::sub-page:vertical {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>58</width>
-                <height>36</height>
+                <width>364</width>
+                <height>375</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1185,7 +1210,7 @@ QScrollBar::sub-page:vertical {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>76</width>
+             <width>94</width>
              <height>54</height>
             </rect>
            </property>
@@ -1426,26 +1451,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <property name="styleSheet">
              <string notr="true">image: url(:/imgs/5875354.png);
 </string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="minimumSize">
-             <size>
-              <width>40</width>
-              <height>39</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(:/imgs/addIcon.png);
-margin:0</string>
             </property>
             <property name="text">
              <string/>

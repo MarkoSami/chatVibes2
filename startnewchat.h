@@ -15,6 +15,8 @@ public:
     explicit StartNewChat(QWidget *parent = nullptr);
     ~StartNewChat();
 
+signals : void renderConversationAnonymously();
+
 private slots:
     void on_pushButton_clicked();
 

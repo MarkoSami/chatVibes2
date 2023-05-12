@@ -22,7 +22,7 @@ private:
     std::string imgPath;
     bool loggedIn;
     Contact *UserConatct;
-
+    bool showImg  ;
 
 
 public:
@@ -30,6 +30,9 @@ public:
     // getters and setters
     std::string getUserID();
     void setUserID(std::string ID);
+
+    bool getShowImg();
+    void setShowImg(bool showImg);
 
     std::string getUserName();
     void setUserName(std::string userName);

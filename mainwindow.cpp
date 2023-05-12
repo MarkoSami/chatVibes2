@@ -92,7 +92,7 @@ void MainWindow::renderLoggedUserStory(Story *newStory) {
         delete item;
     }
 
-    QClickableGroupBox* storyBox = GUI_render::renderStory(newStory);
+    QClickableGroupBox* storyBox = GUI_render::renderStory(newStory,Application::loggedUser->getUserName());
     if (Application::stories[Application::loggedUser->getUserName()].size() > 1) {
          MainWindow::handleStoryClicked(storyBox , Application::stories[Application::loggedUser->getUserName()] , this);
     }
@@ -221,7 +221,6 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_5_clicked()
 {
-
     addContactWin = new AddContact() ;
     addContactWin->show();
     connect(addContactWin, SIGNAL(renderConversation()), this, SLOT(renderContactMain()));
@@ -239,6 +238,7 @@ void MainWindow::on_pushButton_clicked()
 {
     StartNewChatWin = new StartNewChat();
     StartNewChatWin->show();
+    connect(StartNewChatWin, SIGNAL(renderConversationAnonymously()), this, SLOT(renderContactMain()));
 }
 
 
@@ -436,4 +436,6 @@ void MainWindow::searchForContact(std::string key_word)
 
 
 }
+
+
 

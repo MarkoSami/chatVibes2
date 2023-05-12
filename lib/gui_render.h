@@ -42,7 +42,7 @@ public:
 
 
         if (Application::stories[Application::loggedUser->getUserName()].size() > 0) {
-            QClickableGroupBox* storyBoxLoggedUser = renderStory(Application::stories[Application::loggedUser->getUserName()].front());
+            QClickableGroupBox* storyBoxLoggedUser = renderStory(Application::stories[Application::loggedUser->getUserName()].front() , Application::loggedUser->getUserName());
             MainWindow::connect(storyBoxLoggedUser, &QClickableGroupBox::clicked, [=]() {
                 MainWindow::handleStoryClicked(storyBoxLoggedUser , Application::stories[Application::loggedUser->getUserName()] , mainWindow);
             });
@@ -50,12 +50,10 @@ public:
         }
 
         for(auto& contact : Application::loggedUser->getUserContacts()){
-            qDebug()<<Application::loggedUser->getUserName();
-            qDebug()<<contact->getName();
             std::list<Story*> storiesList = Application::stories[contact->getName()];
             if (storiesList.empty()) continue ;
 
-            QClickableGroupBox* storyBox = renderStory(storiesList.front());
+            QClickableGroupBox* storyBox = renderStory(storiesList.front() , contact->getName());
                 MainWindow::connect(storyBox, &QClickableGroupBox::clicked, [=]() {
                     MainWindow::handleStoryClicked(storyBox , storiesList , mainWindow);
                 });
@@ -66,7 +64,7 @@ public:
     }
 
 
-    static QClickableGroupBox* renderStory(Story* story){
+    static QClickableGroupBox* renderStory(Story* story , std::string contactName){
 
         QHBoxLayout *hLayout = new QHBoxLayout;
         QVBoxLayout *VLayout = new QVBoxLayout ;
@@ -85,9 +83,8 @@ public:
         QString imgType = IMG_PATH == ":/imgs/Profile (2).png"? "image" : "border-image";
         pic->setStyleSheet( imgType+  ":url(" + IMG_PATH + ");border-radius:8px");
 
-        QLabel *senderName = new QLabel(QString::fromStdString(story->getPublisher()->getName())) ;
+        QLabel *senderName = new QLabel(QString::fromStdString(contactName)) ;
         QLabel *textmsg = new QLabel() ;
-        QString texttest = "Start Chat!";
         QSpacerItem* hchildSpacer = new QSpacerItem(10, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
         QSpacerItem* hchildSpacerName = new QSpacerItem(10, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
         hLabelName->addWidget(senderName);
@@ -109,8 +106,6 @@ public:
         int maxWidth = 130; // Maximum width in pixels
         QFont font("Arial", 12);
         QFontMetrics fontMetrics(font);
-        QString elidedText = fontMetrics.elidedText(texttest, Qt::ElideRight, maxWidth);
-        textmsg->setText(elidedText);
         QGroupBox *VGroupBox = new QGroupBox();
         VGroupBox->setContentsMargins(0,0,0,0);
         VLayout->setSpacing(4);

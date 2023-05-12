@@ -15,6 +15,10 @@ bool User::addContact(   Contact* newContact){
     return true;
 }
 
+void User::setUserID(std::string _id) {
+    this->ID = _id ;
+}
+
 bool User::removeContact(std::string contactID) {
     for (auto it = contacts.begin(); it != contacts.end(); ++it) {
         if ((*it)->getID() == contactID) {
@@ -37,6 +41,13 @@ Contact* User::findContact(std::string contactID) {
     // contact not found
 }
 
+bool User::getShowImg() {
+    return this->showImg;
+}
+
+void User::setShowImg(bool isShow){
+    this->showImg = isShow;
+}
 
 std::stack<Conversation*>& User::getConversations(){
     return this->conversations;

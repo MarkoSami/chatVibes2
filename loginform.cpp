@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QCoreApplication>
 #include <QKeyEvent>
+#include "lib/utils.h"
 
 loginForm::loginForm(QWidget *parent) :
     QWidget(parent),
@@ -54,6 +55,8 @@ void loginForm::on_LoginBtn_clicked()
             // close the current window
             Contact *newUserContact = new Contact("42",Application::loggedUser->getIMGpath() , Application::loggedUser->getUserName()) ;
             Application::loggedUser->setUserContact(newUserContact);
+            if (Application::loggedUser->getUserID() == Application::loggedUser->getUserName())
+                Application::loggedUser->setUserID(utils::convertAddressToString(Application::loggedUser).toStdString()) ;
             emit LoggedInSuccessfully();
             delayTimer->disconnect(); // disconnect the signal after emitting once
         });

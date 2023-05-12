@@ -69,6 +69,7 @@ private slots:
     void searchForContact(std::string key_word);
 
 
+
 private:
     Ui::MainWindow *ui;
     AddContact *addContactWin ;
