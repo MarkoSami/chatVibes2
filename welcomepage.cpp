@@ -7,6 +7,7 @@ WelcomePage::WelcomePage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::WelcomePage)
 {
+
     fileSystem_lib::loadData();
     QMetaObject::connectSlotsByName(this);
     ui->setupUi(this);
@@ -33,6 +34,8 @@ WelcomePage::WelcomePage(QWidget *parent) :
 
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
 //    mainWindowWin = new MainWindow();
+
+
 
 }
 

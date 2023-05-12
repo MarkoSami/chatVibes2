@@ -5,6 +5,8 @@
 #include <string.h>
 #include<list>
 #include<stack>
+#include <queue>
+#include <map>
 #include "logic/contact.h"
 #include "logic/conversation.h"
 
@@ -24,8 +26,19 @@ private:
     Contact *UserConatct;
     bool showImg  ;
 
+    std::unordered_map<QString,QString> settings;
+
+
 
 public:
+    class Comparator {
+    public:
+        bool operator()(const std::pair<int, Conversation*>& lhs, const std::pair<int, Conversation*>& rhs) const {
+            // Compare the pairs based on their first element (the number of messages)
+            return lhs.first < rhs.first;
+        }
+    };
+
     User(std::string _ID, std::string _user_name, std::string _first_name, std::string _last_name ,std::string _password, std::string _imgPath = ":/imgs/Profile (2).png", bool _loggedIn = false);
     // getters and setters
     std::string getUserID();
@@ -55,6 +68,8 @@ public:
     std::stack<Conversation*>& getConversations();
     void addNewConversation(Conversation* conversation);
 
+    std::unordered_map<QString,QString>& getSettings();
+    void modifySetting(QString settingKey ,QString settingValue);
 
     // user logic functions
     bool isLoggedIn();
@@ -68,6 +83,10 @@ public:
 
     // Setter for UserContact
     void setUserContact(Contact* contact);
+
+
+
+    std::priority_queue<std::pair<int, Conversation*>, std::vector<std::pair<int, Conversation*>>, Comparator> getConversationsQueue();
 
 
 };

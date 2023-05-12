@@ -28,6 +28,7 @@ SOURCES += \
     messagelongalert.cpp \
     profilewindow.cpp \
     registerfrom.cpp \
+    settings.cpp \
     startnewchat.cpp \
     welcomepage.cpp
 
@@ -51,6 +52,7 @@ HEADERS += \
     messagelongalert.h \
     profilewindow.h \
     registerfrom.h \
+    settings.h \
     startnewchat.h \
     welcomepage.h
 
@@ -62,6 +64,7 @@ FORMS += \
     messagelongalert.ui \
     profilewindow.ui \
     registerfrom.ui \
+    settings.ui \
     startnewchat.ui \
     welcomepage.ui
 

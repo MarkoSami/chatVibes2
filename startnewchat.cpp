@@ -31,7 +31,7 @@ void StartNewChat::on_pushButton_clicked()
             newConversation->getReceiver()->setIsAdded(true);
             Application::loggedUser->addNewConversation(newConversation);
 
-            Message *messageText = new Message(Application::loggedUser->getUserName(), messageName, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);
+            Message *messageText = new Message(Application::loggedUser->getUserID(), messageName, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);
             newConversation->addNewMessage(messageText);
 
             emit renderConversationAnonymously();

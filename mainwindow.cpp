@@ -459,3 +459,11 @@ void MainWindow::searchForContact(std::string key_word)
 
 
 
+
+void MainWindow::on_view_settings_btn_clicked()
+{
+    this->settingsWin = new settings();
+    GUI_lib::setUpWindow(settingsWin,"ChatVibes|Settings",":/imgs/settings.png");
+    settingsWin->show();
+}
+

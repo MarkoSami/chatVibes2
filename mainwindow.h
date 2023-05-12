@@ -11,6 +11,7 @@
 #include "ui_mainwindow.h"
 #include "application/application.h"
 #include "addstory.h"
+#include "settings.h"
 
         QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -70,6 +71,8 @@ private slots:
 
 
 
+    void on_view_settings_btn_clicked();
+
 private:
     Ui::MainWindow *ui;
     AddContact *addContactWin ;
@@ -77,6 +80,7 @@ private:
     profileWindow *profWin;
     messageLongAlert *messageLongAlertWin ;
     AddStory *addStoryWin ;
+    settings* settingsWin;
 
 public slots:
     void handleClickedConversation(QGroupBox*);

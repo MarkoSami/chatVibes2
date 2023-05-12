@@ -17,6 +17,7 @@
 
 
 
+
 class GUI_render
 {
 public:
@@ -144,8 +145,7 @@ public:
         return favMessage ;
     }
 
-    static void renderConversations(MainWindow* mainWindow,bool reversed){
-
+    static void renderConversationsStack(MainWindow* mainWindow,bool reversed){
         // Make a copy of the original stack
         std::stack<Conversation*> tempConversations ;
 
@@ -190,6 +190,53 @@ public:
         while(!tempConversations.empty()){
             Application::loggedUser->getConversations().push(tempConversations.top());
             tempConversations.pop();
+        }
+    }
+
+
+    static void renderConversationsQueue(MainWindow* mainWindow,bool reversed){
+
+        std::priority_queue<std::pair<int, Conversation*>, std::vector<std::pair<int, Conversation*>>, User::Comparator> queue = Application::loggedUser->getConversationsQueue();
+        // Render the copied conversations
+        while (!queue.empty()) {
+
+            qDebug()<<"con Name: "<<Application::loggedUser->getConversations().top()->getName();
+            Conversation* conversationPtr = queue.top().second;
+
+            // Convert the address to a string
+            QString conversationAddress = utils::convertAddressToString(conversationPtr);
+
+            // Create the QClickableGroupBox widget
+            QClickableGroupBox *renderConversation = Application::renderConversation(conversationPtr)->outerLayout;
+            conversationPtr->setConversationGroupBoxAddress(renderConversation);
+            renderConversation->setObjectName( conversationAddress);
+            if(!reversed)
+                mainWindow->getUI()->contactsCont->layout()->addWidget(renderConversation);
+            else{
+                QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(mainWindow->getUI()->contactsCont->layout());
+                if (layout) {
+                    layout->insertWidget(0, renderConversation);
+                }
+
+            }
+            renderConversation->setEnabled(true);
+
+            // Connect the clicked() signal to a lambda function
+            MainWindow::connect(renderConversation, &QClickableGroupBox::clicked, [=]() {
+                mainWindow->handleClickedConversation(renderConversation);
+            });
+
+            queue.pop();
+        }
+
+    }
+
+    static void renderConversations(MainWindow* mainWindow,bool reversed){
+        if(Application::loggedUser->getSettings()["sortBy"] == "Number of Messages"){
+            renderConversationsQueue(mainWindow,reversed);
+        }
+        else{
+            renderConversationsStack(mainWindow,reversed);
         }
     }
 

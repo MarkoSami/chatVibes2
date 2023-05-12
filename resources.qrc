@@ -31,5 +31,6 @@
         <file>imgs/delete.png</file>
         <file>imgs/star.png</file>
         <file>imgs/RozanovaGEO-Demo-SemiBold.otf</file>
+        <file>imgs/settings.png</file>
     </qresource>
 </RCC>

@@ -117,7 +117,6 @@ private :
         userData["contacts"] = contacts;
 
         QJsonArray conversations;
-
         std::stack<Conversation*> conversationsStack = user->getConversations();
         while(!conversationsStack.empty()){
             if(!conversationsStack.top()->isDeleted())
@@ -125,6 +124,14 @@ private :
             conversationsStack.pop();
         }
         userData["conversations"] = conversations;
+
+        QJsonArray settings;
+        for(auto &setting : user->getSettings()){
+            QJsonObject JSONsetting;
+            JSONsetting[setting.first] = setting.second;
+            settings.append(JSONsetting);
+        }
+        userData["settings"] = settings;
 
         return userData;
 
@@ -229,6 +236,12 @@ private :
                 auto conversation = jsonConversations[i];
                 Conversation *conversationObj = createNewConversationObject(conversation.toObject());
                 user->addNewConversation(conversationObj);
+            }
+
+            QJsonArray jsonSettings = jsonUserObj["settings"].toArray();
+            for(auto setting : jsonSettings){
+                QJsonObject settingObj = setting.toObject();
+                user->modifySetting(settingObj.keys()[0], settingObj.value(settingObj.keys()[0]).toString());
             }
 
         return user;

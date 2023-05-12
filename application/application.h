@@ -258,7 +258,7 @@ public:
             }
             QSpacerItem *hSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-            if (message->getReceiverId() == loggedUser->getUserName()) {
+            if (message->getReceiverId() == loggedUser->getUserID()) {
                 hLayout->addItem(hSpacer);
                 hLayout->addWidget(VGroupBox);
             }

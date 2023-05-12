@@ -385,8 +385,8 @@ QScrollBar::sub-page:vertical {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>624</width>
-                  <height>457</height>
+                  <width>620</width>
+                  <height>448</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -854,8 +854,8 @@ QScrollBar::sub-page:vertical {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>382</width>
-                <height>398</height>
+                <width>378</width>
+                <height>381</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -1102,8 +1102,8 @@ QScrollBar::sub-page:vertical {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>364</width>
-                <height>375</height>
+                <width>50</width>
+                <height>44</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1210,8 +1210,8 @@ QScrollBar::sub-page:vertical {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>76</width>
-             <height>54</height>
+             <width>72</width>
+             <height>66</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -1496,6 +1496,25 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </widget>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="view_settings_btn">
+         <property name="minimumSize">
+          <size>
+           <width>43</width>
+           <height>41</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/imgs/settings.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
         </widget>
        </item>
        <item>

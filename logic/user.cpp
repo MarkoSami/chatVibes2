@@ -109,3 +109,65 @@ void User::setUserContact(Contact* contact) {
     this->UserConatct = contact;
 }
 
+std::unordered_map<QString,QString>& User::getSettings(){
+    return this->settings;
+}
+
+void User::modifySetting(QString settingKey ,QString settingValue){
+    this->settings[settingKey] = settingValue;
+}
+
+
+struct Comparator {
+    bool operator() (const std::pair<int, int>& p1, const std::pair<int, int>& p2) {
+        return p1.first > p2.first;
+    }
+};
+
+
+std::priority_queue<std::pair<int, Conversation*>, std::vector<std::pair<int, Conversation*>>, User::Comparator> User::getConversationsQueue(){
+
+    std::priority_queue<std::pair<int, Conversation*>, std::vector<std::pair<int, Conversation*>>, User::Comparator> queue;
+    std::stack<Conversation*> temp;
+    //constructing the priority queue
+    while(!conversations.empty()){
+        Conversation* topConv = conversations.top();
+        conversations.pop();
+
+        int numberOfMessages = topConv->getMessages().size();
+        queue.push(std::make_pair( numberOfMessages,topConv));
+        temp.push(topConv);
+    }
+    /// refilling the original stack
+    while(!temp.empty()){
+        Conversation* topConv = temp.top();
+        temp.pop();
+        conversations.push(topConv);
+    }
+
+//    std::list<std::pair<int, Conversation*>> tempConvs;
+//    while(!queue.empty()){
+//        qDebug()<<queue.top()<<"\n";
+//        tempConvs.push_back(queue.top());
+//        queue.pop();
+//    }
+
+//    for(auto &conv : tempConvs){
+//        queue.push(conv);
+//    }
+
+
+
+    return queue;
+
+}
+
+
+
+
+
+
+
+
+
+
