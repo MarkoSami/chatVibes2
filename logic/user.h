@@ -1,4 +1,3 @@
-
 #ifndef USER_H
 #define USER_H
 #include<iostream>
@@ -19,7 +18,7 @@ private:
     std::string first_name;
     std::string last_name;
     std::string password;
-    std::list<Contact*> contacts;
+    std::unordered_map<QString,Contact*> contacts;
     std::stack<Conversation*> conversations;
     std::string imgPath;
     bool loggedIn;
@@ -53,8 +52,8 @@ public:
     std::string getUserPassword();
     void setUserPassword(std::string password);
 
-    std::list<Contact*>& getUserContacts();
-    void setUserContacts(std::list<std::string> &contacts);
+    std::unordered_map<QString,Contact*>& getUserContacts();
+    void setUserContacts(std::unordered_map<QString,Contact*> &contacts);
 
     std::string getIMGpath();
     void setIMGpath(std::string image);

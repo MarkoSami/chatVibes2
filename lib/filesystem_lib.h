@@ -110,8 +110,8 @@ private :
 
         // adding user contacts IDs to the QJson array
         QJsonArray contacts;
-        for(Contact *contact : user->getUserContacts()){
-            contacts.append(createNewJSONContact(contact));
+        for(auto &contact : user->getUserContacts()){
+            contacts.append(createNewJSONContact(contact.second));
         }
         userData["contacts"] = contacts;
 
@@ -226,8 +226,8 @@ private :
             // adding contacts
             QJsonArray jsonContacts = jsonUserObj["contacts"].toArray();
             for(auto contact : jsonContacts){
-                Contact *contactJson = createNewContactObject((contact).toObject());
-                user->addContact(contactJson);
+                Contact *contactObj = createNewContactObject((contact).toObject());
+                user->addContact(contactObj);
             }
 
             // adding conversations

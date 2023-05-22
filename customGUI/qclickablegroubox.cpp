@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QString>
 #include <QLabel>
+#include "mainwindow.h"
+
 
 QClickableGroupBox::QClickableGroupBox(QWidget *parent) : QGroupBox(parent)
 {
@@ -70,8 +72,16 @@ void QClickableGroupBox::handleDeleteAction()
     }
     else{
         Conversation* conversationPtr = (Conversation*)object;
-        conversationPtr->toggleDeleted();
-        this->deleteLater();
+        //        conversationPtr->toggleDeleted();
+
+        // remove the name
+        QLabel* conversationName = (QLabel*)utils::convertStringToaddress( conversationPtr->getConversationGroupBoxAddress()->property("ContactNameAddress").toString() );
+        conversationName->setText(conversationPtr->getReceiver()->getID().c_str());
+        // delete the contact from user contacts
+        conversationPtr->setName(conversationPtr->getReceiver()->getID());
+        conversationPtr->getReceiver()->setIsAdded(false);
+//        Application::loggedUser->getUserContacts().erase(conversationPtr->getReceiver()->getID().c_str());
+        emit (new MainWindow)->handleClickedConversation(conversationPtr->getConversationGroupBoxAddress());
     }
 
 

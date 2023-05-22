@@ -51,10 +51,10 @@ public:
         }
 
         for(auto& contact : Application::loggedUser->getUserContacts()){
-            std::list<Story*> storiesList = Application::stories[contact->getID()];
+            std::list<Story*> storiesList = Application::stories[contact.second->getID()];
             if (storiesList.empty()) continue ;
 
-            QClickableGroupBox* storyBox = renderStory(storiesList.front() , contact->getName());
+            QClickableGroupBox* storyBox = renderStory(storiesList.front() , contact.second->getName());
                 MainWindow::connect(storyBox, &QClickableGroupBox::clicked, [=]() {
                     MainWindow::handleStoryClicked(storyBox , storiesList , mainWindow);
                 });

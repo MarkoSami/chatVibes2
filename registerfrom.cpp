@@ -39,7 +39,8 @@ void Registerfrom::on_pushButton_3_clicked()
     std::string password = ui->passwordLE->text().trimmed().toStdString();
 
     User *regUser = new User("",userName, firstName, lastName, password);
-    regUser->setUserID(utils::convertAddressToString(regUser).toStdString());
+    QString ID = utils::convertAddressToString(regUser);
+    regUser->setUserID(ID.mid(2).toStdString());
 
     if(Application::registerUser(regUser))
     {
