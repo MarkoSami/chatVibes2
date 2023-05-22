@@ -5,6 +5,7 @@
 User::User(std::string ID, std::string user_name, std::string first_name, std::string last_name, std::string password, std::string imgPath, bool loggedIn)
     : ID(ID), user_name(user_name), first_name(first_name), last_name(last_name), password(password), contacts(), imgPath(imgPath), loggedIn(loggedIn)
 {
+    settings["sortBy"] = "Latest" ;
 }
 
 bool User::addContact(   Contact* newContact){

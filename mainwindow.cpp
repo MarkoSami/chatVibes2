@@ -189,6 +189,7 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::renderContactMain() {
     Conversation* conversationPtr ;
+    qDebug() << Application::loggedUser->getSettings()["sortBy"] ;
     if (Application::loggedUser->getSettings()["sortBy"] == "Latest") {
      conversationPtr = (Application::loggedUser->getConversations().top());
     }

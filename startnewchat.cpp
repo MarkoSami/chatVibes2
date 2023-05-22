@@ -20,24 +20,39 @@ StartNewChat::~StartNewChat()
 void StartNewChat::on_pushButton_clicked()
 {
     std::string id = ui->contactName->text().toStdString(); // assign unique id to each contact
-    std::string messageName = ui->messageName->text().toStdString();
+    std::string messageContent = ui->messageContent->text().toStdString();
+    bool isExist = false ;
+
+        std::stack<Conversation*> tempConversations ;
+        // Render the copied conversations
+        while (!Application::loggedUser->getConversations().empty()) {
+            Conversation* conversationPtr = (Application::loggedUser->getConversations().top());
+            if (conversationPtr->getName() == id ) isExist = true ;
+            tempConversations.push(conversationPtr);
+            Application::loggedUser->getConversations().pop();
+        }
+
+        while(!tempConversations.empty()){
+            Application::loggedUser->getConversations().push(tempConversations.top());
+            tempConversations.pop();
+        }
 
     if ((Application::loggedUser) != nullptr) {
-        if (id != "" && messageName != "") {
+        if (id != "" && messageContent != "" && !isExist) {
             Contact *newContact = new Contact(id); // mark // username
             newContact->setName(newContact->getID());
             newContact->setID(Application::findContactID(newContact->getName()));
             Conversation* newConversation = new Conversation(newContact , false , newContact->getName());
             Application::loggedUser->addNewConversation(newConversation);
 
-            Message *messageText = new Message(Application::loggedUser->getUserID(), messageName, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);
+            Message *messageText = new Message(Application::loggedUser->getUserID(), messageContent, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);
             newConversation->addNewMessage(messageText);
 
             emit renderConversationAnonymously();
 
             Conversation* crnt = newConversation;
             QClickableGroupBox* gb = crnt->getConversationGroupBoxAddress();
-            QString addrs = gb->property("labelAddress").toString();
+            QString addrs = gb->property("labelAddress").toString(); // message label
             QLabel* messageLabelAddress = (QLabel*)utils::convertStringToaddress(addrs);
 
             messageLabelAddress->setText(messageText->getMessageTxt().c_str());
@@ -48,9 +63,14 @@ void StartNewChat::on_pushButton_clicked()
             Conversation *receiverConv = Application::getReceiverConversation(newConversation->getReceiver()->getName());
             if(receiverConv != nullptr)
             receiverConv->addNewMessage(messageText);
-
-
-
+            this->close();
+        }
+        else {
+            if(isExist && ui->messageContent->text() == "") ui->messgAlert->setText("type message please") ;
+            else if (isExist) ui->messgAlert->setText("Conversation is already exist") ;
+            else {
+            ui->messgAlert->setText("fill all the fields") ;
+            }
         }
     }
 }

@@ -6,9 +6,7 @@
 
 std::list<User*> Application::users = {};
 
-
-std::map<std::string, std::list<Story*>> Application::stories ;
-
+std::unordered_map<std::string, std::list<Story*>> Application::stories ;
 
 User* Application::loggedUser = nullptr;
 Story* Application::currentStory = nullptr ;

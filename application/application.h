@@ -15,7 +15,7 @@ public:
     Application();
 
     static std::list<User*> users ;
-    static std::map<std::string,std::list<Story*>> stories ;
+    static std::unordered_map<std::string,std::list<Story*>> stories ;
 
     static User* loggedUser;
     static bool logUserIn(User& user);
@@ -105,6 +105,7 @@ public:
 
     static Conversation* getReceiverConversation(std::string receiverName) {
         Conversation *myConv = nullptr ;
+        bool stop = false ;
         for (auto &user : Application::users )  {
                 // Make a copy of the original stack
                 std::stack<Conversation*> tempConversations ;
@@ -116,20 +117,22 @@ public:
                 }
 
                 while(!tempConversations.empty()){
-                    if (user->getUserName() != loggedUser->getUserName() && user->getUserName() == receiverName ) {
+                    if (user->getUserName() == receiverName ) {
                         if (tempConversations.top()->getReceiver()->getName() == loggedUser->getUserName()) {
                             myConv = tempConversations.top();
+                            stop = true ;
                         }
-                    }
+                }
                     user->getConversations().push(tempConversations.top());
                     tempConversations.pop();
+                    if (stop) return myConv;
                 }
             }
 
         if (myConv == nullptr) {
             for (auto &user : Application::users) {
                     if (user->getUserName() == receiverName) {
-                        Contact *newContact = new Contact(loggedUser->getUserID());
+                        Contact *newContact = new Contact(loggedUser->getUserID()); // related to reciever
                         newContact->setName(loggedUser->getUserName());
                         Conversation *newConv = new Conversation(newContact , false , loggedUser->getUserID()) ;
                         myConv = newConv ;

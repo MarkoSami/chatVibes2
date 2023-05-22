@@ -261,7 +261,7 @@ private :
 
     //_______this function constructs the Stories document to be ready to save at the disk
 
-    static QJsonDocument buildStoriesJSONDocument( std::map<std::string,std::list<Story*>> stories) {
+    static QJsonDocument buildStoriesJSONDocument( std::unordered_map<std::string,std::list<Story*>> stories) {
         QJsonArray JSONStories;
         for(auto &storyPtr : stories){
             QJsonObject jsonStory;
@@ -389,7 +389,7 @@ public:
         }
         else if(type == STOORIES){
             if (!Application::stories.empty()) {
-                    std::map<std::string,std::list<Story*> >& mutableUsers = const_cast< std::map<std::string,std::list<Story*> >& > (Application::stories);
+                    std::unordered_map<std::string,std::list<Story*> >& mutableUsers = const_cast< std::unordered_map<std::string,std::list<Story*> >& > (Application::stories);
                     mutableUsers.clear();
             }
             if (jsonDoc.isArray()) {
