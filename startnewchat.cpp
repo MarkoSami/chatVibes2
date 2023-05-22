@@ -28,7 +28,6 @@ void StartNewChat::on_pushButton_clicked()
             newContact->setName(newContact->getID());
             newContact->setID(Application::findContactID(newContact->getName()));
             Conversation* newConversation = new Conversation(newContact , false , newContact->getName());
-            newConversation->getReceiver()->setIsAdded(true);
             Application::loggedUser->addNewConversation(newConversation);
 
             Message *messageText = new Message(Application::loggedUser->getUserID(), messageName, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);

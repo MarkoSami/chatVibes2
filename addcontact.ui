@@ -129,7 +129,7 @@ font-weight:bold ;
 background:transparent;</string>
         </property>
         <property name="text">
-         <string>Phone Number</string>
+         <string>User ID</string>
         </property>
        </widget>
       </item>
@@ -156,20 +156,11 @@ padding:5px;
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item alignment="Qt::AlignVCenter">
-          <widget class="QLabel" name="label_10">
-           <property name="styleSheet">
-            <string notr="true">font-size:15px;
-color:white ;
-background:#161a1d;</string>
-           </property>
-           <property name="text">
-            <string>+20</string>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QLineEdit" name="lineEdit_4">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:white;
 font-size: 12px;

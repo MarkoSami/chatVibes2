@@ -41,7 +41,7 @@ void AddContact::on_pushButton_2_clicked()
      std::string name = ui->lineEdit_5->text().toStdString();
      QString imgPath = img_path;
      if ((Application::loggedUser) != nullptr) {
-         if (id != "" && name != "" ) {
+         if (id != "note:user doesn't exist in the Application!" && name != "" ) {
              Contact *newContact = new Contact(id, imgPath.toStdString(), name);
              Application::loggedUser->addContact(newContact);
              if (Application::currentConversation!=nullptr){

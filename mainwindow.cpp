@@ -188,9 +188,11 @@ void MainWindow::on_pushButton_3_clicked()
 }
 
 void MainWindow::renderContactMain() {
-
-    Conversation* conversationPtr = (Application::loggedUser->getConversations().top());
-
+    Conversation* conversationPtr ;
+    if (Application::loggedUser->getSettings()["sortBy"] == "Latest") {
+     conversationPtr = (Application::loggedUser->getConversations().top());
+    }
+    else conversationPtr = (Application::loggedUser->getConversationsQueue().top().second);
     // Create the QClickableGroupBox widget
     QClickableGroupBox *conv = Application::renderConversation(conversationPtr)->outerLayout;
     conversationPtr->setConversationGroupBoxAddress(conv);
@@ -231,7 +233,7 @@ void MainWindow::on_pushButton_5_clicked()
 {
     if (!Application::currentConversation->getReceiver()->getIsAdded()) {
     addContactWin = new AddContact() ;
-        addContactWin->setIDAuto(QString::fromStdString(Application::currentConversation->getReceiver()->getID()));
+    addContactWin->setIDAuto(QString::fromStdString(Application::currentConversation->getReceiver()->getID()));
     addContactWin->show();
     connect(addContactWin, SIGNAL(renderConversation()), this, SLOT(dissappearIcon()));
     }
@@ -240,8 +242,7 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::dissappearIcon() {
     ui->pushButton_5->setStyleSheet("");
-    ui->ContactName->setText(QString::fromStdString(Application::currentConversation->getReceiver()->getName()));
-
+    ui->ContactName->setText(QString::fromStdString(Application::currentConversation->getName()));
 }
 
 void MainWindow::on_pushButton_6_clicked()
