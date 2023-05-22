@@ -52,10 +52,9 @@ private :
         JSONContact["ID"] = QString::fromStdString(contact->getID());
         JSONContact["name"] = QString::fromStdString(contact->getName().c_str());
         JSONContact["imgPath"] = QString::fromStdString(contact->getImgPath().c_str());
-
+        JSONContact["isAdded"] = contact->getIsAdded();
 
         return JSONContact;
-
     }
 
 
@@ -168,7 +167,8 @@ private :
             (
                 jsonContactObj["ID"].toString().toStdString(),
                 jsonContactObj["imgPath"].toString().toStdString(),
-                jsonContactObj["name"].toString().toStdString()
+                jsonContactObj["name"].toString().toStdString(),
+                jsonContactObj["isAdded"].toBool()
              );
         return contact;
     }
@@ -321,7 +321,7 @@ private :
         {
             QTextStream out(&file);
             out << document.toJson(QJsonDocument::Indented); // <-- Use QTextStream to write the formatted JSON data to the file
-            qDebug()<<document.toJson(QJsonDocument::Indented);
+//            qDebug()<<document.toJson(QJsonDocument::Indented);
             file.close();
             return true;
         }

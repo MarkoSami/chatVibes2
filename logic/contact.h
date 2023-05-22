@@ -13,7 +13,7 @@ private:
     bool isAdded ;
 
 public:
-    Contact( std::string _ID , std::string _imgPath = ":/imgs/Profile (2).png", std::string _name = "");
+    Contact( std::string _ID , std::string _imgPath = ":/imgs/Profile (2).png", std::string _name = "",bool _isAdded = false);
     Contact();
     std::string getID();
     void setID(std::string ID);
@@ -26,6 +26,7 @@ public:
 
     std::string getName();
     void setName(std::string name);
+
 
 };
 

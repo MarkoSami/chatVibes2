@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background:black</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <spacer name="verticalSpacer_2">
@@ -28,29 +31,44 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Sort conversations by</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="sortByCombo_box">
-       <item>
-        <property name="text">
-         <string>Latest</string>
+    <widget class="QGroupBox" name="sortSetting">
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid white;
+border-raduis:5px</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">color:white;
+border:none;</string>
         </property>
-       </item>
-       <item>
         <property name="text">
-         <string>Number of Messages</string>
+         <string>Sort conversations by</string>
         </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="sortByCombo_box">
+        <property name="styleSheet">
+         <string notr="true">color:white;
+margin:5px 0px;
+border-radius: 5px</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Latest</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Number of Messages</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer">
@@ -80,6 +98,13 @@
    </item>
    <item>
     <widget class="QPushButton" name="saveBtn">
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;
+background:green</string>
+     </property>
      <property name="text">
       <string>Save</string>
      </property>

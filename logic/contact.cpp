@@ -4,11 +4,12 @@
 #include<iostream>
 #include <list>
 #include <assert.h>
-Contact::Contact( std::string _ID , std::string _imgPath  , std::string _name  )
+Contact::Contact( std::string _ID , std::string _imgPath  , std::string _name  ,bool _isAdded)
 {
     this->ID = _ID;
     this->imgPath = (_imgPath.empty())? ":/imgs/Profile (2).png" : _imgPath;
     this->name = _name;
+    this->isAdded = _isAdded;
 }
 
 Contact::Contact(){

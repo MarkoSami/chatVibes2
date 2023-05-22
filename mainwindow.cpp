@@ -119,10 +119,7 @@ void MainWindow::handleClickedConversation(QGroupBox *renderConversation) {
         }
 
         // Create a stringstream object from the string.
-        std::stringstream ss(renderConversation->objectName().toStdString());
-
-        void* address;
-        ss >> address;// Read the address from the stringstream.
+        void* address  = utils::convertStringToaddress(renderConversation->objectName());
 
         // Cast the void* pointer to the desired type.
         Conversation* conversation = static_cast<Conversation*>(address);

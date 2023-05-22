@@ -58,7 +58,9 @@ public:
 
     bool addNewMessage( Message *message );
     void setAsFavouriteMessage(std::string messageID);
-    \
+
+
+
     void unsetAsFavouriteMessage(std::string messageID);
 
 

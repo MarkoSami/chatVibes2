@@ -51,12 +51,14 @@ void AddContact::on_pushButton_2_clicked()
                  QString addrs = gb->property("ContactNameAddress").toString();
                  QLabel* senderLabelAddress = (QLabel*)utils::convertStringToaddress(addrs);
                  senderLabelAddress->setText(QString::fromStdString(name));
-                 Application::currentConversation->setName(senderLabelAddress->text().toStdString());
+                 Application::currentConversation->setName(name);
                  emit renderConversation();
             }
         }
     }
 }
+
+
 
 
 
