@@ -33,5 +33,12 @@ void Conversation::setConversationGroupBoxAddress(QClickableGroupBox* address){
     this->conversationGroupBoxAddress = address;
 }
 
+void Conversation::setConvID(std::string id) {
+    this->ConvID = id ;
+}
+
+std::string Conversation::getConvID() {
+    return this->ConvID;
+}
 
 

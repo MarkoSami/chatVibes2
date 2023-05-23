@@ -27,7 +27,7 @@ void StartNewChat::on_pushButton_clicked()
         // Render the copied conversations
         while (!Application::loggedUser->getConversations().empty()) {
             Conversation* conversationPtr = (Application::loggedUser->getConversations().top());
-            if (conversationPtr->getName() == id ) isExist = true ;
+            if (conversationPtr->getConvID() == id ) isExist = true ;
             tempConversations.push(conversationPtr);
             Application::loggedUser->getConversations().pop();
         }
@@ -39,10 +39,11 @@ void StartNewChat::on_pushButton_clicked()
 
     if ((Application::loggedUser) != nullptr) {
         if (id != "" && messageContent != "" && !isExist) {
-            Contact *newContact = new Contact(id); // mark // username
-            newContact->setName(newContact->getID());
+            Contact *newContact = new Contact(""); // mark // username
+            newContact->setName(id);
             newContact->setID(Application::findContactID(newContact->getName()));
             Conversation* newConversation = new Conversation(newContact , false , newContact->getName());
+            newConversation->setConvID(newContact->getName()) ;
             Application::loggedUser->addNewConversation(newConversation);
 
             Message *messageText = new Message(Application::loggedUser->getUserID(), messageContent, newConversation->getReceiver()->getID() , QDateTime::currentDateTime(), false, false);

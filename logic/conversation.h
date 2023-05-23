@@ -26,7 +26,7 @@ private:
     QClickableGroupBox* conversationGroupBoxAddress;
     bool isFavourite;
     bool deleted;
-
+    std::string ConvID ;
 
 public:
 
@@ -46,6 +46,10 @@ public:
 
     bool isDeleted();
     void toggleDeleted();
+
+
+    void setConvID(std::string id) ;
+    std::string getConvID() ;
 
     void setName(std::string _name) { name = _name; }
     void setIsFavourite(bool _isFavourite) { isFavourite = _isFavourite; }
