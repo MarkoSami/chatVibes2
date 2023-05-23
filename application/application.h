@@ -265,12 +265,14 @@ public:
             if (message->getReceiverId() == loggedUser->getUserID()) {
                 hLayout->addItem(hSpacer);
                 hLayout->addWidget(VGroupBox);
+                VGroupBox->setStyleSheet("background:#"+ (QString)((isFavouriteHandler)? "F0A500": "181c1c" ) +"; font-size:17px ; color: white;font-weight:bold ");
             }
             else {
                 hLayout->addWidget(VGroupBox);
                 hLayout->addItem(hSpacer);
+                VGroupBox->setStyleSheet("background:#"+ (QString)((isFavouriteHandler)? "F0A500": "3663fd" ) +"; font-size:17px ; color: white;font-weight:bold ");
             }
-            VGroupBox->setStyleSheet("background:#"+ (QString)((isFavouriteHandler)? "F0A500": "3663fd" ) +"; font-size:17px ; color: white;font-weight:bold ");
+
             datemsg->setStyleSheet("color:white; font-size:8px");
             QClickableGroupBox *hGroupBox = new QClickableGroupBox();
             hGroupBox->setProperty("type","message");
@@ -291,7 +293,7 @@ public:
 
     static void handleDoubleClicked(messageLayout* message){
         qDebug()<<"Double clicked..!";
-            Message* messagePtr = (Message*)utils::convertStringToaddress(message->outerLayout->objectName());
+        Message* messagePtr = (Message*)utils::convertStringToaddress(message->outerLayout->objectName());
         messagePtr->toggleFavourite();
         if (messagePtr->isFavourite()) {
                 messagePtr->setMessageFavBy(Application::loggedUser->getUserContact());
@@ -305,9 +307,14 @@ public:
                     }
                 }
         }
-
+        QString colourOfMessage = "181c1c" ;
         if (!messagePtr->isDeleted()){
-        QString style = "background:#"+ ((QString)((messagePtr->isFavourite())? "F0A500": "3663fd" ) +"; font-size:17px ; color: white ;font-weight:bold ");
+        if (loggedUser->getUserID() != messagePtr->getReceiverId()) {
+          qDebug() << loggedUser->getUserID() ;
+          qDebug() << messagePtr->getReceiverId();
+          colourOfMessage = "3663fd"    ;
+        }
+        QString style = "background:#"+ ((QString)((messagePtr->isFavourite())? "F0A500": colourOfMessage ) +"; font-size:17px ; color: white ;font-weight:bold ");
         message->innerLAyout->setStyleSheet(style);
         }
         qDebug()<<messagePtr->isFavourite();

@@ -21,9 +21,10 @@ void AddStory::on_pushButton_clicked()
 {
     // Open a file dialog and get the selected file
     img_path = QFileDialog::getOpenFileName(this, tr("Select Image"), QDir::homePath(), tr("Image files (*.png *.jpg *.jpeg *.bmp *.gif)"));
-    ui->pushButton->setText("Photo Uploaded !");
+
     // Check if a file was selected
     if (!img_path.isEmpty()) {
+            ui->pushButton->setText("Photo Uploaded !");
         // Upload the file to the server or perform other actions with it
         qDebug() << "File selected:" << img_path;
     } else {
