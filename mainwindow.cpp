@@ -278,7 +278,7 @@ void MainWindow::on_pushButton_7_clicked()
             std::stack<Conversation*> tempConversations ;
 
 
-            Message *messageTest = new Message(Application::loggedUser->getUserName(), textMsg.toStdString(), Application::currentConversation->getReceiver()->getName(), QDateTime::currentDateTime(), false, false);
+            Message *messageTest = new Message(Application::loggedUser->getUserID(), textMsg.toStdString(), Application::currentConversation->getReceiver()->getID(), QDateTime::currentDateTime(), false, false);
             Application::currentConversation->addNewMessage(messageTest);
 
             Conversation* crnt = Application::currentConversation;

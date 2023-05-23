@@ -225,8 +225,9 @@ public:
     };
 
     static messageLayout* renderMessage(Message* message){
-        bool isFavouriteHandler = false ;
 
+        QString originalColour = (message->getReceiverId() == Application::loggedUser->getUserID())? "#161a1d" : "#3663fd";
+        bool isFavouriteHandler = false ;
         for (auto &putFavUser : message->getMessageFavBy()) {
                 if (putFavUser->getName() == Application::loggedUser->getUserContact()->getName() && message->isFavourite()) {
                     isFavouriteHandler = true;
@@ -257,7 +258,7 @@ public:
             VLayout->setSpacing(0);
             VGroupBox->setLayout(VLayout);
             if (!message->isDeleted()) {
-            VGroupBox->setStyleSheet("background:#"+ (QString)((isFavouriteHandler)? "F0A500": "#161a1d" ) +"; font-size:17px ; color: white ;font-weight:bold ");
+//            VGroupBox->setStyleSheet("background:#"+ (QString)((isFavouriteHandler)? "F0A500": originalColour ) +"; font-size:17px ; color: white ;font-weight:bold ");
             }
             QSpacerItem *hSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
