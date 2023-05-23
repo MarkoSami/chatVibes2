@@ -10,6 +10,8 @@ class QClickableGroupBox : public QGroupBox
 
 public:
     explicit QClickableGroupBox(QWidget *parent = nullptr);
+signals: void showAddContactIconHandler();
+
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

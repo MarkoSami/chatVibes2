@@ -80,8 +80,9 @@ void QClickableGroupBox::handleDeleteAction()
         // delete the contact from user contacts
         conversationPtr->setName(conversationPtr->getReceiver()->getID());
         conversationPtr->getReceiver()->setIsAdded(false);
-//        Application::loggedUser->getUserContacts().erase(conversationPtr->getReceiver()->getID().c_str());
-        emit (new MainWindow)->handleClickedConversation(conversationPtr->getConversationGroupBoxAddress());
+        qDebug() << conversationPtr->getConversationGroupBoxAddress();
+        Application::loggedUser->getUserContacts().erase(conversationPtr->getReceiver()->getID().c_str());
+        emit showAddContactIconHandler() ;
     }
 
 

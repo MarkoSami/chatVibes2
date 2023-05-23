@@ -195,6 +195,7 @@ void MainWindow::renderContactMain() {
      // Create the QClickableGroupBox widget
     QClickableGroupBox *conv = Application::renderConversation(conversationPtr)->outerLayout;
     conversationPtr->setConversationGroupBoxAddress(conv);
+    qDebug() << ":::" << conversationPtr->getConversationGroupBoxAddress();
     conv->setObjectName(utils::convertAddressToString(conversationPtr));
 
     connect(conv, &QClickableGroupBox::clicked, [=]() {
@@ -245,6 +246,7 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::dissappearIcon() {
     ui->pushButton_5->setStyleSheet("");
+
     ui->ContactName->setText(QString::fromStdString(Application::currentConversation->getName()));
 }
 

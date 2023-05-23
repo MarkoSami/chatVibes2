@@ -81,6 +81,7 @@ private:
     messageLongAlert *messageLongAlertWin ;
     AddStory *addStoryWin ;
     settings* settingsWin;
+    QClickableGroupBox *Qbox;
 
 public slots:
     void handleClickedConversation(QGroupBox*);
